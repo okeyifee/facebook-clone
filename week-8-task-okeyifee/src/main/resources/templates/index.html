@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>facebook</title>
+    <link rel="stylesheet" href="../public/css/styles.css" th:href="@{/css/styles.css}"/>
+    <link rel="icon" href="../public/img/favicon.ico" th:href="@{/img/favicon.ico}"/>
+
+
+</head>
+
+<body>
+<!--<a href=“index.html” th:href=“@{/}”><img src="../public/img/site-logo.png" th:src="@{/img/site-logo.png}" /></a>-->
+<a href="index.html" th:href="@{/}">Home</a>
+<a href="users/login.html" th:href="@{/users/login}">Login</a>
+<a href="users/register.html" th:href="@{/users/register}">Register</a>
+<a href="posts/index.html" th:href="@{/templates/posts}">Posts</a>
+<a href="posts/create.html" th:href="@{/templates/posts/create}">Create Post</a>
+<a href="users/index.html" th:href="@{/users}">Users</a>
+
+<div id="logged-in-info"><span>Hello, <b>(user)</b></span>
+    <form method="post" th:action="@{/users/logout}">
+        <input type="submit" value="Logout"/>
+    </form>
+</div>
+
+<aside>
+    <h2>Recent Posts</h2>
+    <a href="#" th:each="p : ${latest5posts}" th:text="${p.title}" th:href="@{/templates/posts/view/{id}/(id=${p.id})}">Work
+        Begins on HTML5.1</a>
+</aside>
+
+<main id="posts">
+    <article th:each="p : ${latest3posts}">
+        <h2 class="title" th:text="${p.title}">Post Title</h2>
+        <div class="date">
+            <i>Posted on</i>
+            <span th:text="${#dates.format(p.date, 'dd-MMM-yyyy')}">22-May-2016</span>
+            <span th:if="${p.author}" th:remove="tag">
+          <i>by</i>
+          <span th:text="${p.author.firstname != null ?
+                        p.author.lastname: p.author.email}">Svetlin Nakov</span>
+        </span>
+        </div>
+        <p class="content" th:utext="${p.body}">Post content</p>
+    </article>
+</main>
+
+<h1>Welcome to facebook</h1>
+logged in Date & time: <b th:text="${#dates.format(#dates.createNow(),'YYYY/MM/dd HH:mm')}">date and time</b>
+
+</body>
+
+</html>
+
+
+
+

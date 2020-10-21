@@ -1,0 +1,43 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>Login</title>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<h1>Log in the blog</h1>-->
+<!--    <form method="post" th:object="${LoginForm}">-->
+<!--        <div><label for="username">Username:</label></div>-->
+<!--        <input id="username" type="text" name="username" th:value="*{username}" />-->
+<!--        <span class="formError" th:if="${#fields.hasErrors('username')}"-->
+<!--              th:errors="*{username}">Invalid username</span>-->
+
+<!--        <div><label for="password" th:value="*{username}">Password:</label></div>-->
+<!--        <input id="password" type="password" name="password" th:value="*{password}" />-->
+<!--        <span class="formError" th:if="${#fields.hasErrors('password')}"-->
+<!--              th:errors="*{password}">Invalid password</span>-->
+
+<!--        <div><input type="submit" value="Login"/>-->
+<!--            <a href="register.html" th:href="@{/users/register}">[Go to Register]</a></div>-->
+<!--    </form>-->
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login page</title>
+</head>
+<body>
+<h1>Login page</h1>
+<p th:if="${loginError}" class="error">Wrong user or password</p>
+<form th:action="@{/login.html}" method="post">
+    <label for="username">Username</label>:
+    <input type="text" id="username" name="username" autofocus="autofocus"/> <br/>
+    <label for="password">Password</label>:
+    <input type="password" id="password" name="password"/> <br/>
+    <input type="submit" value="Log in"/>
+    <a href="register.html" th:href="@{/users/register}">[Go to Register]</a></div>
+</form>
+</body>
+</html>
